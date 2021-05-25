@@ -8,13 +8,57 @@
 import SwiftUI
 
 struct SettingView: View {
+    @ObservedObject var viewModel: AuthViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack(alignment: .leading, spacing: 50) {
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Text("アプリ情報")
+                Divider()
+                HStack {
+                    Text("バージョン")
+                    Spacer()
+                    Text("1.0.0")
+                }
+                Divider()
+                Button(action: {
+                    
+                }, label: {
+                    Text("ライセンス")
+                })
+                Divider()
+            }
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Text("その他")
+                Divider()
+                
+                Button(action: {
+                    
+                }, label: {
+                    Text("レビューする")
+                })
+                Divider()
+                
+                Button(action: {
+                    viewModel.signOut()
+                }, label: {
+                    Text("ログアウト")
+                })
+                Divider()
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .foregroundColor(.black)
     }
 }
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        SettingView(viewModel: AuthViewModel())
     }
 }
